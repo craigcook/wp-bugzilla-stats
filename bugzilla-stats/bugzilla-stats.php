@@ -107,7 +107,7 @@ function get_bugzilla_stats_for_email($user_email) {
     $service = bzstats_get_service();
 
     if (!$service->check_user_exists($user_email)) {
-        throw new BugzillaUserNotFoundException("No bugzilla user was found with email: {$user_email}");
+        throw new BugzillaUserNotFoundException("No bugzilla user was found with email: {$user_email}", 10);
     }
 
     $stats = array(
@@ -123,7 +123,7 @@ function bzstats_get_service() {
     global $bugzilla_stats_service;
 
     if ($bugzilla_stats_service === false) {
-        throw new BugzillaConnectionException("No service URL configured.");
+        throw new BugzillaConnectionException("No service URL configured.", 20);
     }
 
     return $bugzilla_stats_service;
